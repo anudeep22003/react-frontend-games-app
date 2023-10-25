@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 // import "./App.css";
 // import Card from "./components/Card.tsx";
 
@@ -7,27 +7,23 @@ function App() {
     <>
       {/* <Card></Card> */}
       <Grid
-        templateAreas={`"header header"
-                        "nav main"
-                        "nav footer"`}
-        templateRows={"50px 1fr 30px"}
-        templateColumns={"150px 1fr"}
-        h="400px"
-        gap="1"
-        color="blackAlpha.700"
-        fontWeight="bold"
+        // templateAreas={`"nav nav"
+        //                 "aside main"`}
+        templateAreas={{
+          sm: `"nav" "main"`,
+          lg: `"nav nav" "aside main"`,
+        }}
       >
-        <GridItem pl="2" bg="orange.300" area={"header"}>
-          Header
-        </GridItem>
-        <GridItem pl="2" bg="pink.300" area={"nav"}>
+        <GridItem px="5" area="nav" bg="pink.200">
           Nav
         </GridItem>
-        <GridItem pl="2" bg="green.300" area={"main"}>
+        <Show above="lg">
+          <GridItem px="5" area="aside" bg="yellow.200">
+            Aside
+          </GridItem>
+        </Show>
+        <GridItem px="5" area="main" bg="green.200">
           Main
-        </GridItem>
-        <GridItem pl="2" bg="blue.300" area={"footer"}>
-          Footer
         </GridItem>
       </Grid>
     </>
