@@ -1,4 +1,5 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
+import NavBar from "./components/NavBar";
 // import "./App.css";
 // import Card from "./components/Card.tsx";
 
@@ -14,9 +15,11 @@ function App() {
           lg: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem px="5" area="nav" bg="pink.200">
-          Nav
+        <GridItem px="5" area="nav">
+          <NavBar></NavBar>
         </GridItem>
+
+        {/* this griditem will only show when screen size is above large */}
         <Show above="lg">
           <GridItem px="5" area="aside" bg="yellow.200">
             Aside
