@@ -15,6 +15,11 @@ const GameCard = ({ game }: Props) => {
             {game.name}
           </Heading>
         </CardBody>
+        {/* <CardFooter>
+          {game.parent_platform.map((p) => (
+            <Text>{p.platform.name}</Text>
+          ))}
+        </CardFooter> */}
       </Card>
     </>
   );

@@ -1,5 +1,5 @@
-import { Spinner, Text, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
-import useGames from "../hooks/useGames";
+import { Spinner, Text, GridItem, SimpleGrid } from "@chakra-ui/react";
+import useGames from "../hooks/useGamesLocal";
 import GameCard from "./GameCard";
 
 const GameGrid = () => {
@@ -16,7 +16,7 @@ const GameGrid = () => {
           lg: 3,
           xl: 4,
         }}
-        spacing={10}
+        spacing={20}
       >
         {games.map((game) => (
           <GridItem w="100%">
