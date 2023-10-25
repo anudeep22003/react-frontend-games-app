@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AxiosError } from "axios";
 
 const instance = axios.create({
   baseURL: "https://api.rawg.io/api",
@@ -8,3 +9,4 @@ const instance = axios.create({
 });
 
 export default instance;
+export { AxiosError };
