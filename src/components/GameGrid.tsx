@@ -5,6 +5,20 @@ import GameCard from "./GameCard";
 const GameGrid = () => {
   const { error, games, isLoading } = useGames();
 
+  // ! can remove later, just some code to find unique list of platforms
+  // ! took a lot longer than I want to admit to remove list nesting
+  //   const all_platforms = games.map((game) =>
+  //     game.parent_platforms.map(({ platform }) => platform.slug),
+  //   );
+  //   //   console.log(all_platforms);
+  //   const all_platforms_list = all_platforms.flat(1);
+  //   //   const uniquePlatforms = new Set(all_platforms)
+  //   const set_list = new Set(all_platforms_list);
+
+  //   for (const i of set_list.keys()) {
+  //     console.log(i);
+  //   }
+
   return (
     <>
       {isLoading && <Spinner />}
