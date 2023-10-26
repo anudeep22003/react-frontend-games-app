@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardBody,
-  Image,
-  Heading,
-  Badge,
-  HStack,
-} from "@chakra-ui/react";
+import { Card, CardBody, Image, Heading, HStack } from "@chakra-ui/react";
 import Game from "../types/Game";
 import PlatformIconList from "./PlatformIconList";
 import RatingBadge from "./RatingBadge";
@@ -17,7 +10,7 @@ type Props = {
 const GameCard = ({ game }: Props) => {
   return (
     <>
-      <Card key={game.id} borderRadius={10} overflow={"hidden"}>
+      <Card width={"300px"} key={game.id} borderRadius={10} overflow={"hidden"}>
         <Image src={game.background_image} border={"lg"}></Image>
         <CardBody>
           <Heading fontSize="2xl" overflow={"hidden"}>
