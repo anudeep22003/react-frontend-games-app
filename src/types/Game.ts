@@ -9,6 +9,7 @@ type Game = {
   name: string;
   background_image: string;
   added: number;
+  metacritic: number;
 
   parent_platforms: { platform: Platform }[];
   // this complex thing is because parent_platform is an object
