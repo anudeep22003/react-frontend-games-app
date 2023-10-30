@@ -3,6 +3,7 @@ import useGames from "../hooks/useGamesLocal";
 // import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import SkeletonCard from "./SkeletonCards";
+import GameCardContainer from "./GameCardContainer";
 
 const GameGrid = () => {
   const { error, games, isLoading } = useGames();
@@ -36,10 +37,16 @@ const GameGrid = () => {
         spacing={20}
       >
         {isLoading &&
-          skeletons.map((skeleton) => <SkeletonCard key={skeleton} />)}
+          skeletons.map((skeleton) => (
+            <GameCardContainer>
+              <SkeletonCard key={skeleton} />
+            </GameCardContainer>
+          ))}
         {games.map((game) => (
-          <GridItem w="100%">
-            <GameCard game={game} />
+          <GridItem>
+            <GameCardContainer>
+              <GameCard game={game} />
+            </GameCardContainer>
           </GridItem>
         ))}
       </SimpleGrid>
