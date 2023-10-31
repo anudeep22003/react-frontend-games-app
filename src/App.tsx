@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
+import GenreList from "./components/GenreList";
 // import "./App.css";
 // import Card from "./components/Card.tsx";
 
@@ -23,7 +24,7 @@ function App() {
         {/* this griditem will only show when screen size is above large */}
         <Show above="lg">
           <GridItem px="5" area="aside">
-            Aside
+            <GenreList />
           </GridItem>
         </Show>
         <GridItem px="5" area="main">
