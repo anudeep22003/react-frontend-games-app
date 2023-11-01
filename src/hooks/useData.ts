@@ -37,7 +37,7 @@ const useData = <T>(endpoint: string) => {
         setError(err.message);
       });
     return () => controller.abort();
-  }, []);
+  }, [endpoint]);
 
   // return all the functions and values that you are going to need in the main app
   return { data, setData, error, isLoading };
