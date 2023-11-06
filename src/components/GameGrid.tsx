@@ -1,12 +1,17 @@
-import { Text, GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Text, SimpleGrid } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 // import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import SkeletonCard from "./SkeletonCards";
 import GameCardContainer from "./GameCardContainer";
+import Genre from "../types/Genre";
 
-const GameGrid = () => {
-  const { error, data, isLoading } = useGames();
+type Props = {
+  selectedGenre: Genre | null;
+};
+
+const GameGrid = ({ selectedGenre }: Props) => {
+  const { error, data, isLoading } = useGames(selectedGenre);
 
   // ! can remove later, just some code to find unique list of platforms
   // ! took a lot longer than I want to admit to remove list nesting
@@ -22,7 +27,7 @@ const GameGrid = () => {
   //     console.log(i);
   //   }
 
-  const skeletons = [1, 2, 3, 4, 5, 6];
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <>
@@ -38,16 +43,14 @@ const GameGrid = () => {
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            <GameCardContainer>
-              <SkeletonCard key={skeleton} />
+            <GameCardContainer key={skeleton}>
+              <SkeletonCard />
             </GameCardContainer>
           ))}
         {data.map((game) => (
-          <GridItem>
-            <GameCardContainer>
-              <GameCard game={game} />
-            </GameCardContainer>
-          </GridItem>
+          <GameCardContainer key={game.id}>
+            <GameCard game={game} />
+          </GameCardContainer>
         ))}
       </SimpleGrid>
       {}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosClient, { AxiosError } from "../services/api-client";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
 
 type FetchResponse<T> = {
   count: number;
@@ -9,35 +9,46 @@ type FetchResponse<T> = {
   results: T[];
 };
 
-const useData = <T>(endpoint: string) => {
+const useData = <T>(
+  endpoint: string,
+  requestConfig?: AxiosRequestConfig,
+  deps?: any[],
+) => {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    // this is for when a user navigates away
-    // and so we want to aborb the request rather than complete it
-    const controller = new AbortController();
-    // set loading to start the request
-    setLoading(true);
+  useEffect(
+    () => {
+      // this is for when a user navigates away
+      // and so we want to aborb the request rather than complete it
+      const controller = new AbortController();
+      // set loading to start the request
+      setLoading(true);
 
-    // make request and get the promise
+      // make request and get the promise
 
-    // ! change this when you want to make actual api calls, this is just to cache
-    axiosClient
-      .get<FetchResponse<T>>(endpoint, { signal: controller.signal })
-      .then((res) => {
-        setLoading(false);
-        setData(res.data.results);
-        setError("");
-      })
-      .catch((err: AxiosError) => {
-        setLoading(false);
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-      });
-    return () => controller.abort();
-  }, [endpoint]);
+      // ! change this when you want to make actual api calls, this is just to cache
+      axiosClient
+        .get<FetchResponse<T>>(endpoint, {
+          signal: controller.signal,
+          ...requestConfig,
+        })
+        .then((res) => {
+          setLoading(false);
+          setData(res.data.results);
+          setError("");
+        })
+        .catch((err: AxiosError) => {
+          setLoading(false);
+          if (err instanceof CanceledError) return;
+          setError(err.message);
+        });
+      return () => controller.abort();
+    },
+    // [requestConfig],
+    deps ? [...deps] : [],
+  );
 
   // return all the functions and values that you are going to need in the main app
   return { data, setData, error, isLoading };
