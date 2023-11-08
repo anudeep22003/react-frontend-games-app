@@ -4,14 +4,14 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import SkeletonCard from "./SkeletonCards";
 import GameCardContainer from "./GameCardContainer";
-import Genre from "../types/Genre";
+import { GameQuery } from "../App";
 
 type Props = {
-  selectedGenre: Genre | null;
+  gameQuery: GameQuery;
 };
 
-const GameGrid = ({ selectedGenre }: Props) => {
-  const { error, data, isLoading } = useGames(selectedGenre);
+const GameGrid = ({ gameQuery }: Props) => {
+  const { error, data, isLoading } = useGames(gameQuery);
 
   // ! can remove later, just some code to find unique list of platforms
   // ! took a lot longer than I want to admit to remove list nesting

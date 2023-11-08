@@ -11,9 +11,10 @@ import Genre from "../types/Genre";
 
 type Props = {
   setSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 };
 
-const GenreList = ({ setSelectedGenre: setSelectedFilter }: Props) => {
+const GenreList = ({ setSelectedGenre, selectedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
   if (isLoading) return <Spinner />;
   if (error) return null;
@@ -28,7 +29,11 @@ const GenreList = ({ setSelectedGenre: setSelectedFilter }: Props) => {
                 boxSize={"32px"}
                 borderRadius={8}
               />
-              <Button variant={"link"} onClick={() => setSelectedFilter(g)}>
+              <Button
+                fontWeight={selectedGenre?.id === g.id ? "extrabold" : "normal"}
+                variant={"link"}
+                onClick={() => setSelectedGenre(g)}
+              >
                 {g.name}
               </Button>
             </HStack>
