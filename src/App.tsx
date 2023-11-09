@@ -12,7 +12,6 @@ export type GameQuery = {
   genre: Genre | null;
   platform: Platform | null;
   sortValue: string | null;
-  sortLabel: string | null;
 };
 
 function App() {
