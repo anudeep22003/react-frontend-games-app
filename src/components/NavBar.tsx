@@ -1,12 +1,14 @@
 import { HStack, Image } from "@chakra-ui/react";
 import logo from "../assets/Logo/logo.webp";
 import ColorModeSwitch from "./ColorModeSwitch";
+import SearchInput from "./SearchInput";
 
 const NavBar = () => {
   return (
     <>
-      <HStack justify={"space-between"}>
+      <HStack>
         <Image src={logo} boxSize={"60px"} />
+        <SearchInput></SearchInput>
         <ColorModeSwitch></ColorModeSwitch>
       </HStack>
     </>
