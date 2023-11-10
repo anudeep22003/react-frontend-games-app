@@ -2,6 +2,7 @@ import { Card, CardBody, Image, Heading, HStack } from "@chakra-ui/react";
 import Game from "../types/Game";
 import PlatformIconList from "./PlatformIconList";
 import RatingBadge from "./RatingBadge";
+import placeholder from "../assets/Placeholder/no-image-placeholder.webp";
 
 type Props = {
   game: Game;
@@ -11,7 +12,10 @@ const GameCard = ({ game }: Props) => {
   return (
     <>
       <Card key={game.id} overflow={"hidden"}>
-        <Image src={game.background_image} border={"lg"}></Image>
+        <Image
+          src={game.background_image ? game.background_image : placeholder}
+          border={"lg"}
+        />
         <CardBody>
           <Heading fontSize="2xl" overflow={"hidden"}>
             {game.name}
