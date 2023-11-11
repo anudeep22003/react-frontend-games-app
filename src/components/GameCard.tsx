@@ -3,6 +3,7 @@ import Game from "../types/Game";
 import PlatformIconList from "./PlatformIconList";
 import RatingBadge from "./RatingBadge";
 import placeholder from "../assets/Placeholder/no-image-placeholder.webp";
+import Emoji from "./Emoji";
 
 type Props = {
   game: Game;
@@ -17,15 +18,16 @@ const GameCard = ({ game }: Props) => {
           border={"lg"}
         />
         <CardBody>
-          <Heading fontSize="2xl" overflow={"hidden"}>
-            {game.name}
-          </Heading>
-          <HStack justify={"space-between"}>
+          <HStack marginBottom={3} justify={"space-between"}>
             <PlatformIconList
               platforms={game.parent_platforms.map(({ platform }) => platform)}
             />
             <RatingBadge metacritic={game.metacritic} />
           </HStack>
+          <Heading fontSize="2xl" overflow={"hidden"}>
+            {game.name}
+          </Heading>
+          <Emoji rating={game.rating_top} />
         </CardBody>
       </Card>
     </>

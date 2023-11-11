@@ -10,7 +10,7 @@ type Game = {
   background_image: string;
   added: number;
   metacritic: number;
-
+  rating_top: number;
   parent_platforms: { platform: Platform }[];
   // this complex thing is because parent_platform is an object
   // that has a property called platform
